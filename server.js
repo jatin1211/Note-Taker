@@ -36,7 +36,8 @@ app.post('/api/notes', (req,res) => {
 
     req.body.id = notes.length.toString();
 
-    const note = createNewNote(req.body,notes);
+    const note = createNewNote(req.body,notes)
+    .then(res.json(note));
     
 } );
 
