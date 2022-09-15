@@ -26,35 +26,30 @@ function createNewNote(body, notesArray) {
 app.get("/api/notes", (req, res) => {
   let results = notes;
   res.json(results);
-  //res.send('hello');
-  //console.log(results);
+ 
 });
 
 app.post("/api/notes", (req, res) => {
-  req.body.id = notes.length.toString();
+  req.body.id = (notes.length + 1).toString();
 
   const note = createNewNote(req.body, notes)
-  //.then(note => {res.json(note)});
   res.json(notes);
 });
 
-// app.delete("/api/notes/:id", (req, res) => {
-//   const noteId = req.params.id;
-//   for (var i = 0; i < notes.length; i++) {
-//     if (noteId == notes[i].id) {
-//       notes.splice(i, 1);
-//     }
-//   }
-//   fs.writeFileSync("./db/db.json", JSON.stringify(notes))
-//     .then((notes) => {
-//       res.json(notes);
-//     })
-//     .catch((err) => {
-//       res.status(500).json(err);
-//     });
-//   //   console.log(notes);
-//   //   res.json(notes);
-// });
+app.delete("/api/notes/:id", (req, res) => {
+  const noteId = req.params.id;
+  for (var i = 0; i < notes.length; i++) {
+    if (noteId == notes[i].id) {
+      notes.splice(i, 1);
+    }
+  }
+  fs.writeFileSync("./db/db.json", JSON.stringify({notes}));
+
+      res.json(notes);
+   
+  //   console.log(notes);
+  //   res.json(notes);
+});
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
