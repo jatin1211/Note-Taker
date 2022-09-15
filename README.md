@@ -15,7 +15,7 @@ Following is the link to the Heroku Deployment : https://notes-taker-jatin1211.h
 
 
 ## Usage Information
-The user can create/add as many notes as per their requirement.
+The user can create/add or delete as many notes as per their requirement.
 
 ## Screencapture
 
